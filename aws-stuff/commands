@@ -1,0 +1,12 @@
+aws s3api create-bucket --bucket eleven-configure-webapp --region us-east-1
+aws s3api put-bucket-policy --bucket eleven-configure-webapp --policy file://bucket_policy
+aws s3api put-bucket-website --bucket eleven-configure-webapp --website-configuration file://website_configuration
+aws s3 cp eleven-configure s3://eleven-configure-webapp --recursive --cache-control public,max-age=86400
+
+aws s3 sync . s3://configure.11nator.com/
+
+
+aws cloudfront create-distribution --generate-cli-skeleton > cf_config.json
+
+Below is so cloudfront removes all its cache so that the newly deployed files are read
+aws cloudfront create-invalidation --distribution-id E2UF1YA60F3KB7 --paths '/*'
