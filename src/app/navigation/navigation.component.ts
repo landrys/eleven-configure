@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  title = 'eleven-configure';
   subTitle = 'Due Date Calculator';
   constructor() { }
 

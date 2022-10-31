@@ -128,13 +128,6 @@ app-top-bar {
   align-items: center;
 }
 
-app-top-bar h1 {
-  color: white;
-  margin: 0;
-  font-size: 25px;
-  font-weight: bold;
-}
-
 .splash-info{
 	background-color: #98AFC7;
 	color:black;
