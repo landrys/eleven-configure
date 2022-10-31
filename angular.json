@@ -104,5 +104,7 @@
       }
     }
   },
-  "defaultProject": "eleven-configure"
+  "cli": {
+    "analytics": false
+  }
 }
