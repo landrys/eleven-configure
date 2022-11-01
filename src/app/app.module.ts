@@ -6,9 +6,13 @@ import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HolidaysComponent } from './holidays/holidays.component';
-import {MatMenuModule} from '@angular/material/menu';
 import { DefaultsComponent } from './defaults/defaults.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+
+
 
 @NgModule({
   declarations: [
@@ -21,8 +25,10 @@ import { NavigationComponent } from './navigation/navigation.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatMenuModule,
-    BrowserAnimationsModule
+    MatChipsModule,
+    BrowserAnimationsModule,
+MatFormFieldModule,
+MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
