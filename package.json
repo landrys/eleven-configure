@@ -20,6 +20,11 @@
     "@angular/platform-browser": "^14.2.8",
     "@angular/platform-browser-dynamic": "^14.2.8",
     "@angular/router": "^14.2.8",
+    "@aws-sdk/client-dynamodb": "^3.201.0",
+    "@aws-sdk/lib-dynamodb": "^3.202.0",
+    "aws-sdk": "^2.1245.0",
+    "install": "^0.13.0",
+    "npm": "^8.19.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

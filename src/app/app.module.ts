@@ -11,6 +11,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -27,8 +28,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AppRoutingModule,
     MatChipsModule,
     BrowserAnimationsModule,
-MatFormFieldModule,
-MatIconModule
+    MatFormFieldModule,
+    MatIconModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

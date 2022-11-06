@@ -10,3 +10,11 @@ aws cloudfront create-distribution --generate-cli-skeleton > cf_config.json
 
 Below is so cloudfront removes all its cache so that the newly deployed files are read
 aws cloudfront create-invalidation --distribution-id E2UF1YA60F3KB7 --paths '/*'
+
+
+
+To include aws-sdk
+npm install aws-sdk -->V2
+npm install @aws-sdk/client-dynamodb -->V3
+
+
