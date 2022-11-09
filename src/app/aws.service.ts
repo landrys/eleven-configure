@@ -14,10 +14,17 @@ export class AwsService {
 
 	constructor() { 
 
+
+		const  credential = {
+			accessKeyId: 'AKIAWDOWJNCMFCSX4HPR',
+			secretAccessKey: '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'
+		}
+		/*
 		const  credential = {
 			accessKeyId: 'AKIAWDOWJNCMECZSORER',
 			secretAccessKey: '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'
 		}
+	       */
 
 		const region='us-east-1';
 		this.ddbClient = new DynamoDBClient({ region: region, credentials: credential});
@@ -45,13 +52,8 @@ export class AwsService {
 	}
 
 	async executeQuery( input: ExecuteStatementCommandInput ) {
-		try {
 			const data = await this.ddbDocClient.send(new ExecuteStatementCommand(input));
 			return data;
-		} catch (err) {
-			console.log("Error", err);
-			throw(err);
-		}
 	}
 
 	async getWithScan( input: ScanCommandInput ) {

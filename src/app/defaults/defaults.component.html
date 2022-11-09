@@ -1,1 +1,30 @@
-<p>defaults works!</p>
+
+<div class="parent">
+
+	<h2 >
+		<b>Vendor Defaults</b>
+	</h2>
+	<mat-form-field class="defaults-form-field" appearance="fill">
+		<mat-label>Cut-Off Time (Military Time eg. 13:10)</mat-label>
+		<input matInput type="text" [ngModel]="cutOffTime" (input)="change($event)" id="cutOffTime">
+		<button *ngIf="newCutOffTime" matSuffix mat-icon-button aria-label="save" (click)="saveCutOffTime()" >
+			<mat-icon>check</mat-icon>
+		</button>
+	</mat-form-field>
+
+	<mat-form-field class="defaults-form-field" appearance="fill">
+		<mat-label>Lead Business Days</mat-label>
+		<input matInput type="number" [ngModel]="leadBusinessDays" (input)="change($event)" id="leadBusinessDays">
+		<button *ngIf="newLeadBusinessDays" matSuffix mat-icon-button aria-label="save" (click)="saveLeadBusinessDays()">
+			<mat-icon>check</mat-icon>
+		</button>
+	</mat-form-field>
+
+	<mat-form-field class="defaults-form-field" appearance="fill">
+		<mat-label>Shipping Days</mat-label>
+		<input matInput type="number" [ngModel]="shippingDays" (input)="change($event)" id="shippingDays">
+		<button *ngIf="newShippingDays" matSuffix mat-icon-button aria-label="save" (click)="saveShippingDays()">
+			<mat-icon>check</mat-icon>
+		</button>
+	</mat-form-field>
+</div>
