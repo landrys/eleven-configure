@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Credentials  } from "@aws-sdk/types";
 import { DynamoDB, DynamoDBClient, ExecuteStatementCommand, ExecuteStatementCommandInput, ScanCommand, ScanCommandInput, GetItemCommand, ListTablesCommand } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+import { Vendor } from './vendor';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +51,15 @@ export class AwsService {
 
 		this.ddbDocClient = DynamoDBDocumentClient.from(this.ddbClient, translateConfig);
 
+	}
+
+
+	async executeVendorsQuery ( input: ExecuteStatementCommandInput ) : Promise<Vendor[]> {
+			const data = await this.ddbDocClient.send(new ExecuteStatementCommand(input));
+			var vendors: Vendor[];
+			vendors = data.Items!.map( (val,index)  => { return {id: +val['id'].N!, name: val['name']?.S, warehouse: val['warehouse']?.S} });
+			console.log(vendors);
+			return vendors;
 	}
 
 	async executeQuery( input: ExecuteStatementCommandInput ) {

@@ -1,0 +1,12 @@
+.details-form-field {
+	  width: 300px;
+	  text-align: center;
+	  
+}
+.parent {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  flex-direction: column;
+}
+

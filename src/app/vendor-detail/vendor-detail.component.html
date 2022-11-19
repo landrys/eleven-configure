@@ -1,0 +1,26 @@
+<div class="parent" *ngIf="vendor">
+	<h2 >
+		<b>{{vendor.name | uppercase}}</b> <b>{{vendor.warehouse}}#{{vendor.id}}</b>
+	</h2>
+	<button  matSuffix mat-icon-button aria-label="back" (click)="goBack()">
+		<mat-icon>arrow_back</mat-icon>
+	</button>
+
+	<mat-form-field class="details-form-field" appearance="fill">
+		<mat-label>Name</mat-label>
+		<input matInput type="string" [ngModel]="vendor.name" (input)="change($event)" id="name">
+		<button *ngIf="newName" matSuffix mat-icon-button aria-label="save" (click)="saveName()">
+			<mat-icon>save_alt</mat-icon>
+		</button>
+	</mat-form-field>
+	<mat-form-field class="details-form-field" appearance="fill">
+		<mat-label>Warehouse</mat-label>
+		<input matInput type="string" [ngModel]="vendor.warehouse" (input)="change($event)" id="warehouse">
+		<button *ngIf="newWarehouse" matSuffix mat-icon-button aria-label="save" (click)="saveWarehouse()">
+			<mat-icon>save_alt</mat-icon>
+		</button>
+		<button  matSuffix mat-icon-button aria-label="save" (click)="deleteWarehouse()">
+			<mat-icon>close</mat-icon>
+		</button>
+	</mat-form-field>
+</div>

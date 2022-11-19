@@ -14,6 +14,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { VendorsComponent } from './vendors/vendors.component';
+import { SearchVendorsComponent } from './search-vendors/search-vendors.component';
+import { VendorDetailComponent } from './vendor-detail/vendor-detail.component';
 
 
 
@@ -24,7 +27,10 @@ import { FormsModule } from '@angular/forms';
     TopBarComponent,
     HolidaysComponent,
     DefaultsComponent,
-    NavigationComponent
+    NavigationComponent,
+    VendorsComponent,
+    SearchVendorsComponent,
+    VendorDetailComponent
   ],
   imports: [
     BrowserModule,
