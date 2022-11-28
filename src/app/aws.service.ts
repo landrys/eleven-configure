@@ -3,6 +3,7 @@ import { Credentials  } from "@aws-sdk/types";
 import { DynamoDB, DynamoDBClient, ExecuteStatementCommand, ExecuteStatementCommandInput, ScanCommand, ScanCommandInput, GetItemCommand, ListTablesCommand } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 import { Vendor } from './vendor';
+import { Api11natorService } from './api11nator.service';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -11,27 +12,31 @@ import { Observable, of } from 'rxjs';
 
 export class AwsService {
 
-	private ddbClient: DynamoDBClient;
-	private ddbDocClient: DynamoDBDocumentClient;
+	private ddbClient!: DynamoDBClient;
+	private ddbDocClient!: DynamoDBDocumentClient;
+	private key!: string;
+	private sec!: string;
 
-	constructor() { 
+	constructor(private api11natorService: Api11natorService) { 
+		api11natorService.getUno().subscribe(data => this.setItUp(data));
+	}
 
+	private setItUp( data:any ) {
+		this.key = data.replace('uno\n','');
+		this.api11natorService.getDue().subscribe(data => this.setItUp2(data));
+	}
+
+	private setItUp2( data:any ) {
+
+		this.sec = data.replace('due\n','');
 
 		const  credential = {
-			accessKeyId: 'AKIAWDOWJNCMFCSX4HPR',
-			secretAccessKey: 'FuVduphPAmT45ZAFIqKbsRXCJjuRZrS0RTkvZLxe'
+			accessKeyId: this.key.trim(),
+			secretAccessKey: this.sec.trim()
 		}
-		/*
-		const  credential = {
-			accessKeyId: 'AKIAWDOWJNCMECZSORER',
-			secretAccessKey: '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'
-		}
-	       */
 
 		const region='us-east-1';
 		this.ddbClient = new DynamoDBClient({ region: region, credentials: credential});
-
-		// TODO get from our DB on Init...
 
 		const  marshallOptions = {
 			// Whether to automatically convert empty strings, blobs, and sets to `null`.
@@ -53,13 +58,12 @@ export class AwsService {
 
 	}
 
-
 	async executeVendorsQuery ( input: ExecuteStatementCommandInput ) : Promise<Vendor[]> {
-			const data = await this.ddbDocClient.send(new ExecuteStatementCommand(input));
-			var vendors: Vendor[];
-			vendors = data.Items!.map( (val,index)  => { return {id: +val['id'].N!, name: val['name']?.S, warehouse: val['warehouse']?.S} });
-			console.log(vendors);
-			return vendors;
+		const data = await this.ddbDocClient.send(new ExecuteStatementCommand(input));
+		var vendors: Vendor[];
+		vendors = data.Items!.map( (val,index)  => { return {id: +val['id'].N!, name: val['name']?.S, warehouse: val['warehouse']?.S} });
+		console.log(vendors);
+		return vendors;
 	}
 
 	async executeQuery( input: ExecuteStatementCommandInput ) {

@@ -6,5 +6,5 @@ How to build and deploy:
 cd eleven-configure 
 ng build   
 cd dist/eleven-configure
-aws s3 sync . s3://configure.11nator.com/
+aws s3 sync . s3://configure.11nator.com/ --delete
 aws cloudfront create-invalidation --distribution-id E2UF1YA60F3KB7 --paths '/*'

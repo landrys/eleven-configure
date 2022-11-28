@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { VendorsComponent } from './vendors/vendors.component';
 import { SearchVendorsComponent } from './search-vendors/search-vendors.component';
 import { VendorDetailComponent } from './vendor-detail/vendor-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -41,7 +42,8 @@ import { VendorDetailComponent } from './vendor-detail/vendor-detail.component';
     MatIconModule,
     MatSnackBarModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
