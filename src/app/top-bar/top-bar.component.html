@@ -1,5 +1,5 @@
-<a [routerLink]="['/']">
+<a [routerLink]="['/navigation']">
 	<h1>Eleven Configure</h1>
 </a>
 
-<a [routerLink]="['/']" class="button"><i class="material-icons">home</i></a>
+<button *ngIf="loggedIn|async" (click)="logout()">Logout</button>

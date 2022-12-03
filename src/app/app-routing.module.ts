@@ -6,14 +6,17 @@ import { DefaultsComponent } from './defaults/defaults.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { VendorDetailComponent } from './vendor-detail/vendor-detail.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-	{ path: '', redirectTo: 'navigation', pathMatch: 'full' },
-	{ path: 'defaults', component: DefaultsComponent },
-	{ path: 'holidays', component: HolidaysComponent },
-	{ path: 'vendors', component: VendorsComponent },
-	{ path: 'navigation', component: NavigationComponent },
-	{ path: 'detail/:id', component: VendorDetailComponent }
+	{ path: 'login', component: LoginComponent },
+	{ path: '', redirectTo: 'login', pathMatch: 'full' },
+	{ path: 'defaults', component: DefaultsComponent, canActivate: [AuthGuard] },
+	{ path: 'holidays', component: HolidaysComponent, canActivate: [AuthGuard] },
+	{ path: 'vendors', component: VendorsComponent, canActivate: [AuthGuard] },
+	{ path: 'navigation', component: NavigationComponent, canActivate: [AuthGuard] },
+	{ path: 'detail/:id', component: VendorDetailComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

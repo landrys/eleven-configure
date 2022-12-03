@@ -13,11 +13,13 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatInputModule} from '@angular/material/input';
+import {MatDividerModule} from '@angular/material/divider';
 import { FormsModule } from '@angular/forms';
 import { VendorsComponent } from './vendors/vendors.component';
 import { SearchVendorsComponent } from './search-vendors/search-vendors.component';
 import { VendorDetailComponent } from './vendor-detail/vendor-detail.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -31,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationComponent,
     VendorsComponent,
     SearchVendorsComponent,
-    VendorDetailComponent
+    VendorDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatSnackBarModule,
     MatInputModule,
+    MatDividerModule,
     FormsModule,
     HttpClientModule
   ],
