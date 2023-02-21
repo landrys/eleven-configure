@@ -2,25 +2,94 @@
 	<h2 >
 		<b>{{vendor.name | uppercase}}</b> <b>{{vendor.warehouse}}#{{vendor.id}}</b>
 	</h2>
-	<button  matSuffix mat-icon-button aria-label="back" (click)="goBack()">
+	<button mat-icon-button color="accent"  aria-label="back" (click)="goBack()">
 		<mat-icon>arrow_back</mat-icon>
 	</button>
 
 	<mat-form-field class="details-form-field" appearance="fill">
 		<mat-label>Name</mat-label>
 		<input matInput type="string" [ngModel]="vendor.name" (input)="change($event)" id="name">
-		<button *ngIf="newName" matSuffix mat-icon-button aria-label="save" (click)="saveName()">
+		<button mat-icon-button color="accent" *ngIf="newName" matSuffix aria-label="save" (click)="saveString('name')">
 			<mat-icon>save_alt</mat-icon>
 		</button>
 	</mat-form-field>
 	<mat-form-field class="details-form-field" appearance="fill">
 		<mat-label>Warehouse</mat-label>
 		<input matInput type="string" [ngModel]="vendor.warehouse" (input)="change($event)" id="warehouse">
-		<button *ngIf="newWarehouse" matSuffix mat-icon-button aria-label="save" (click)="saveWarehouse()">
+		<button *ngIf="newWarehouse" matSuffix mat-icon-button color="accent" aria-label="save" (click)="saveString('warehouse')">
 			<mat-icon>save_alt</mat-icon>
 		</button>
-		<button  matSuffix mat-icon-button aria-label="save" (click)="deleteWarehouse()">
+		<button  matSuffix mat-icon-button color="accent" aria-label="save" (click)="confirmDialog('warehouse')">
 			<mat-icon>close</mat-icon>
 		</button>
 	</mat-form-field>
+	<mat-form-field class="details-form-field" appearance="fill">
+		<mat-label>CutOffTime(Military: Eg.(13:10)</mat-label>
+		<input matInput type="string" [ngModel]="vendor.cutOffTime" [pattern]="cutOffTimePattern" (input)="change($event)" id="cutOffTime" #uname1="ngModel">
+		<button *ngIf="!uname1.errors && newCutOffTime" matSuffix mat-icon-button color="accent" aria-label="save" (click)="saveString('cutOffTime')">
+			<mat-icon>save_alt</mat-icon>
+		</button>
+		<button  matSuffix mat-icon-button color="accent" aria-label="save" (click)="confirmDialog('cutOffTime')">
+			<mat-icon>close</mat-icon>
+		</button>
+	</mat-form-field>
+	<mat-form-field class="details-form-field" appearance="fill">
+		<mat-label>ShippingCarrier</mat-label>
+		<input matInput type="string" [ngModel]="vendor.shippingCarrier" (input)="change($event)" id="shippingCarrier">
+		<button *ngIf="newShippingCarrier" matSuffix mat-icon-button color="accent" aria-label="save" (click)="saveString('shippingCarrier')">
+			<mat-icon>save_alt</mat-icon>
+		</button>
+		<button  matSuffix mat-icon-button color="accent" aria-label="save" (click)="confirmDialog('shippingCarrier')">
+			<mat-icon>close</mat-icon>
+		</button>
+	</mat-form-field>
+	<mat-form-field class="details-form-field" appearance="fill">
+		<mat-label>ShippingDays</mat-label>
+		<input matInput type="number" [ngModel]="vendor.shippingDays" (input)="change($event)" id="shippingDays">
+		<button  *ngIf="newShippingDays" matSuffix mat-icon-button color="accent" aria-label="save" (click)="saveNumber('shippingDays')">
+			<mat-icon>save_alt</mat-icon>
+		</button>
+		<button  matSuffix mat-icon-button color="accent" aria-label="save" (click)="confirmDialog('shippingDays')">
+			<mat-icon>close</mat-icon>
+		</button>
+	</mat-form-field>
+
+	<mat-form-field class="details-form-field" appearance="fill">
+		<mat-label>OrderDays(1,3 = Mon and Wed)</mat-label>
+		<input matInput type="string"  [pattern]="orderDaysPattern" [ngModel]="vendor.regularOrderDays" (input)="change($event)" id="regularOrderDays" #uname="ngModel" >
+		<button  *ngIf="!uname.errors && newRegularOrderDays" matSuffix mat-icon-button color="accent" aria-label="save" (click)="saveNumberSet('regularOrderDays')">
+			<mat-icon>save_alt</mat-icon>
+		</button>
+		<button  matSuffix mat-icon-button color="accent" aria-label="save" (click)="confirmDialog('regularOrderDays')">
+			<mat-icon>close</mat-icon>
+		</button>
+	</mat-form-field>
+
+
+
+
+
+	<div align = "left">
+		<section>
+			<mat-checkbox [(ngModel)]="dropShipToStore" (change)="changeCheckbox($event)" id="dropShipToStore" >Drop Ship To Store</mat-checkbox>
+			<button  *ngIf="dropShipToStoreChange" matSuffix mat-icon-button color="accent" aria-label="save" (click)="saveBoolean('dropShipToStore')">
+				<mat-icon>save_alt</mat-icon>
+			</button>
+		</section>
+
+		<section>
+			<mat-checkbox [(ngModel)]="isBike" (change)="changeCheckbox($event)" id="isBike">Bike</mat-checkbox>
+			<button  *ngIf="isBikeChange" matSuffix mat-icon-button color="accent" aria-label="save" (click)="saveBoolean('isBike')">
+				<mat-icon>save_alt</mat-icon>
+			</button>
+		</section>
+
+		<section>
+			<mat-checkbox [(ngModel)]="weeklyOrder" (change)="changeCheckbox($event)" id="weeklyOrder">Weekly Order</mat-checkbox>
+		<button *ngIf="weeklyOrderChange" matSuffix mat-icon-button color="accent" aria-label="save" (click)="saveBoolean('weeklyOrder')">
+				<mat-icon>save_alt</mat-icon>
+			</button>
+		</section>
+	</div>
+
 </div>

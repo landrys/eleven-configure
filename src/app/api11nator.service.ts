@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AwsService } from './aws.service'
+import { Configuration } from './configuration';
 
 
 @Injectable({
@@ -13,7 +14,8 @@ export class Api11natorService {
 	private goof = btoa('joe:joe');
 	private jdbcUrl = 'api/jdbc';  // URL to web api
 	//readonly server = "localhost:8010";
-	readonly server = "testnator.com";
+	readonly server = Configuration.SERVER;
+	readonly proto = Configuration.PROTO; // or https
 
 	private httpOptions = {
 		headers: new HttpHeaders({
@@ -26,11 +28,11 @@ export class Api11natorService {
 	constructor( private http: HttpClient ) { }
 
 	getUno(): Observable<any>{
-		return this.http.get('http://' + this.server + '/api/jdbc/select uno from asdy', this.httpOptions);
+		return this.http.get(this.proto + '://' + this.server + '/api/jdbc/select uno from asdy', this.httpOptions);
 	}
 
 	getDue(): Observable<any>{
-		return this.http.get('http://' + this.server + '/api/jdbc/select due from asdy', this.httpOptions);
+		return this.http.get(this.proto + '://' + this.server + '/api/jdbc/select due from asdy', this.httpOptions);
 	}
 
 	getCredentials( data: any ): Observable<any> {
@@ -39,7 +41,7 @@ export class Api11natorService {
 				'Authorization': 'Basic ' + btoa(data.username + ":" + data.password) 
 			})
 		}
-		const url = 'http://' + this.server + '/user';
+		const url = this.proto + '://' + this.server + '/user';
 		return this.http.get(url, httpOptions);
 	}
 
@@ -53,7 +55,7 @@ export class Api11natorService {
 			}),
 			params: queryParams
 		}
-		const url = 'http://' + this.server + '/api/users';
+		const url = this.proto + '://' + this.server + '/api/users';
 		return this.http.get(url, httpOptions);
 
 	}

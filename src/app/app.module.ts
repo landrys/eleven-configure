@@ -14,12 +14,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatInputModule} from '@angular/material/input';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { VendorsComponent } from './vendors/vendors.component';
 import { SearchVendorsComponent } from './search-vendors/search-vendors.component';
 import { VendorDetailComponent } from './vendor-detail/vendor-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 
 
@@ -34,7 +38,8 @@ import { LoginComponent } from './login/login.component';
     VendorsComponent,
     SearchVendorsComponent,
     VendorDetailComponent,
-    LoginComponent
+    LoginComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,9 @@ import { LoginComponent } from './login/login.component';
     MatSnackBarModule,
     MatInputModule,
     MatDividerModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatCheckboxModule,
     FormsModule,
     HttpClientModule
   ],

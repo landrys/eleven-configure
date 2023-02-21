@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AwsService } from '../aws.service';;
+import { AwsService } from '../aws.service';
+import { Configuration } from '../configuration';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +8,14 @@ import { AwsService } from '../aws.service';;
 
 export class DefaultsService {
 
+	readonly table = Configuration.VENDOR_SHIP_TIME_TABLE_SUPPORT;
+
 	constructor(private awsService: AwsService ) { }
 
 	getDefaults(): Promise<any>  {
 
 		const params = {
-			// Statement: "SELECT * FROM VendorShipTimeSupport where support=?",
-			Statement: "SELECT * FROM TestTable where id=?",
-			//Parameters: [{ S: "customFutureHolidays" }],
+			Statement: "SELECT * FROM " + this.table + " where support=?",
 			Parameters: [{ S: "defaults" }],
 		}
 
@@ -25,9 +26,7 @@ export class DefaultsService {
 
 		const params = {
 
-			//Statement: "UPDATE VendorShipTimeSupport set futureHolidays=? where support=customFutureHolidays",
-			Statement: "UPDATE TestTable set cutOffTime=? where id=?",
-			//Parameters: [{S: "one"}],
+			Statement: "UPDATE " + this.table + " set cutOffTime=? where support=?",
 			Parameters: [{ S: cutOffTime }, {S: "defaults"}],
 		}
 
@@ -40,9 +39,7 @@ export class DefaultsService {
 		
 		const params = {
 
-			//Statement: "UPDATE VendorShipTimeSupport set futureHolidays=? where support=customFutureHolidays",
-			Statement: "UPDATE TestTable set leadBusinessDays=? where id=?",
-			//Parameters: [{S: "one"}],
+			Statement: "UPDATE " + this.table + " set leadBusinessDays=? where support=?",
 			Parameters: [{ N: leadBusinessDays.toString() }, {S: "defaults"}],
 		}
 
@@ -54,21 +51,12 @@ export class DefaultsService {
 
 		const params = {
 
-			//Statement: "UPDATE VendorShipTimeSupport set futureHolidays=? where support=customFutureHolidays",
-			Statement: "UPDATE TestTable set shippingDays=? where id=?",
-			//Parameters: [{S: "one"}],
+			Statement: "UPDATE " + this.table + " set shippingDays=? where support=?",
 			Parameters: [{ N: shippingDays.toString() }, {S: "defaults"}],
 		}
 
 			return  this.awsService.executeQuery(params);
 
 	}
-
-
-
-
-
-
-
 
 }

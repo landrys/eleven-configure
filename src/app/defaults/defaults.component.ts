@@ -10,6 +10,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class DefaultsComponent implements OnInit {
 
 	cutOffTime = '';
+        cutOffTimePattern="([1]?[0-9]|2[0-3]):[0-5][0-9]";
 	leadBusinessDays = 0;
 	shippingDays = 0;
 

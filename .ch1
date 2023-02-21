@@ -1,0 +1,43 @@
+There is a link to configure.11nator.com from testnator.com or 11nator.com
+We set up an s3 repository and cloudfront do deliver content for this app.
+
+How to build and deploy:
+
+cd eleven-configure 
+ng build   
+cd dist/eleven-configure
+aws s3 sync . s3://configure.11nator.com/ --delete
+aws cloudfront create-invalidation --distribution-id E2UF1YA60F3KB7 --paths '/*'
+
+
+SUMMARY:
+
+Remember that we are using http for test anf https for production. If you are on production and using https you can't open up an
+http ( ? need to test ) web page link. While on configuration app ( http:configure.11nator.com or https:configure.11nator.com ) you cant make calls to an api with http if on https and maybe vice versa. SO the calls to the 11nator server ( current app ) are made with https only so the configure app is required to use https. If testing ( testnator is on http ) so need to use http. Pain in the ass.
+
+
+Deploy the production app with one of the drop down snowman selections to https://configure.11nator.com
+I if this is th test app need to use http://configure.11nator.com.
+
+Look at the asdy table on the test mysql. Need to put in credentials for dynamo DB. in prod DB as well.
+
+
+Set the server in order to get the above credentials in the configure app.
+http://testnator.com or https://11nator.com see api11nator.service via
+server and proto. Eg. server=tesnator.com  proto=http  =>  http://testnator.com
+
+Set the correct db names for the vendorsupport and vendorsShipping info
+	1)  Configuration Class
+
+
+The login shit via router file
+
+
+
+OTHER:
+1) Make sure you make the edits required for the deployment
+	a) set the correct server for the link.
+		i) production https://configure.11nator.com
+		ii) test http://configure.11nator.com
+
+	b)

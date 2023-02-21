@@ -9,6 +9,19 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 
+/*
+const routes: Routes = [
+	{ path: 'login', component: LoginComponent },
+	{ path: '', redirectTo: 'navigation', pathMatch: 'full' },
+	{ path: 'defaults', component: DefaultsComponent },
+	{ path: 'holidays', component: HolidaysComponent },
+	{ path: 'vendors', component: VendorsComponent },
+	{ path: 'navigation', component: NavigationComponent },
+	{ path: 'detail/:id', component: VendorDetailComponent }
+];
+*/
+
+
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: '', redirectTo: 'login', pathMatch: 'full' },

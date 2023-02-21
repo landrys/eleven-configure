@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AwsService } from '../aws.service';;
+import { Configuration} from '../configuration';;
 
 @Injectable({
   providedIn: 'root'
 })
 export class HolidaysService {
+
+        readonly table = Configuration.VENDOR_SHIP_TIME_TABLE_SUPPORT;
 
 	constructor(private awsService: AwsService ) { }
 
@@ -15,10 +18,8 @@ export class HolidaysService {
 		}
 
 		const params3 = {
-			//Statement: "UPDATE VendorShipTimeSupport set futureHolidays=? where support=customFutureHolidays",
-			Statement: "UPDATE TestTable set futureHolidays=? where id=?",
-			//Parameters: [{S: "one"}],
-			Parameters: [{ SS: holidays }, {S: "one"}],
+			Statement: "UPDATE " + this.table + " set futureHolidays=? where support=?",
+			Parameters: [{ SS: holidays }, {S: "customFutureHolidays"}],
 		}
 		try {
 			return  this.awsService.executeQuery(params3);
@@ -32,10 +33,8 @@ export class HolidaysService {
 	getHolidays(): Promise<any>  {
 
 		const params3 = {
-			// Statement: "SELECT * FROM VendorShipTimeSupport where support=?",
-			Statement: "SELECT * FROM TestTable where id=?",
-			//Parameters: [{ S: "customFutureHolidays" }],
-			Parameters: [{ S: "one" }],
+			Statement: "SELECT * FROM " + this.table + " where support=?",
+			Parameters: [{ S: "customFutureHolidays" }],
 		}
 
 			return  this.awsService.executeQuery(params3);

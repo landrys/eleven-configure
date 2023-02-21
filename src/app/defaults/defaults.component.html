@@ -6,8 +6,8 @@
 	</h2>
 	<mat-form-field class="defaults-form-field" appearance="fill">
 		<mat-label>Cut-Off Time (Military Time eg. 13:10)</mat-label>
-		<input matInput type="text" [ngModel]="cutOffTime" (input)="change($event)" id="cutOffTime">
-		<button *ngIf="newCutOffTime" matSuffix mat-icon-button aria-label="save" (click)="saveCutOffTime()" >
+		<input matInput type="text" [ngModel]="cutOffTime" [pattern]="cutOffTimePattern" (input)="change($event)" id="cutOffTime" #name1="ngModel">
+		<button *ngIf="!name1.errors && newCutOffTime" matSuffix mat-icon-button color="accent" aria-label="save" (click)="saveCutOffTime()" >
 			<mat-icon>save_alt</mat-icon>
 		</button>
 	</mat-form-field>
@@ -15,7 +15,7 @@
 	<mat-form-field class="defaults-form-field" appearance="fill">
 		<mat-label>Lead Business Days</mat-label>
 		<input matInput type="number" [ngModel]="leadBusinessDays" (input)="change($event)" id="leadBusinessDays">
-		<button *ngIf="newLeadBusinessDays" matSuffix mat-icon-button aria-label="save" (click)="saveLeadBusinessDays()">
+		<button *ngIf="newLeadBusinessDays" matSuffix mat-icon-button color="accent" aria-label="save" (click)="saveLeadBusinessDays()">
 			<mat-icon>save_alt</mat-icon>
 		</button>
 	</mat-form-field>
@@ -23,7 +23,7 @@
 	<mat-form-field class="defaults-form-field" appearance="fill">
 		<mat-label>Shipping Days</mat-label>
 		<input matInput type="number" [ngModel]="shippingDays" (input)="change($event)" id="shippingDays">
-		<button *ngIf="newShippingDays" matSuffix mat-icon-button aria-label="save" (click)="saveShippingDays()">
+		<button *ngIf="newShippingDays" matSuffix mat-icon-button color="accent" aria-label="save" (click)="saveShippingDays()">
 			<mat-icon>save_alt</mat-icon>
 		</button>
 	</mat-form-field>
