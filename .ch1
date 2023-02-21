@@ -1,3 +1,25 @@
+Screen tabls open last time:
+SERVER
+cd /Users/fpiergen/Landrys/configurator/eleven-configure, ng serve --port 4201
+NGCOMMANDS
+cd /Users/fpiergen/Landrys/configurator/eleven-configure, ng build, cd cd dist/eleven-configure, aws s3 sync . s3://configure.11nator.com/ --delete,
+aws cloudfront create-invalidation --distribution-id E2UF1YA60F3KB7 --paths '/*'
+AWSCLI
+cd /Users/fpiergen/Landrys/configurator/eleven-configure/aws-stuff, aws dynamodb execute-statement --statement "select * from TestVendorShipTime where id between 0 and 500", 
+CONSOLE
+cd /Users/fpiergen/Landrys/configurator/eleven-configure, npm install @aws-sdk/lib-dynamodb, 
+NGGENERATEAPP
+cd /Users/fpiergen/Landrys/configurator/generated-by-ng ( I think this is just a look what happens thing ),
+
+
+
+
+
+
+
+
+
+
 There is a link to configure.11nator.com from testnator.com or 11nator.com
 We set up an s3 repository and cloudfront do deliver content for this app.
 
